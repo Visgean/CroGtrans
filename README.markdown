@@ -8,6 +8,10 @@ Purpose:
 ========
 	This is python library for google translation, advantage is that is baed on jabber so google will not block you for having too many requests...
 
+What language can I use?
+========================
+	Those who are supported by google bot service - see the list at http://www.google.com/support/talk/bin/answer.py?hl=en&answer=89921
+
 Usage:
 ===== 
 	>>>from croGtrans import *
