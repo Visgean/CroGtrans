@@ -15,14 +15,14 @@ What language can I use?
 Usage:
 ===== 
 '''python
->>>from croGtrans import *
->>>from getpass import getpass
->>>trans = Translate(login=raw_input("Your jid: "), password=getpass(), languageFrom="cs", languageTo="en")
->>>print trans.translate("Hovno kleslo")
-Shit fell
->>>trans.setLanguage("es", "en")
->>>print trans.translate("Buenos tardes")
-Good afternoon
+	>>>from croGtrans import *
+	>>>from getpass import getpass
+	>>>trans = Translate(login=raw_input("Your jid: "), password=getpass(), languageFrom="cs", languageTo="en")
+	>>>print trans.translate("Hovno kleslo")
+	Shit fell
+	>>>trans.setLanguage("es", "en")
+	>>>print trans.translate("Buenos tardes")
+	Good afternoon
 '''
 
 Requirements:
