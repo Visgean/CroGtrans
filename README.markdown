@@ -14,7 +14,7 @@ What language can I use?
 
 Usage:
 ===== 
-'''python
+```python
 	>>>from croGtrans import *
 	>>>from getpass import getpass
 	>>>trans = Translate(login=raw_input("Your jid: "), password=getpass(), languageFrom="cs", languageTo="en")
@@ -23,7 +23,8 @@ Usage:
 	>>>trans.setLanguage("es", "en")
 	>>>print trans.translate("Buenos tardes")
 	Good afternoon
-'''
+```
+
 
 Requirements:
 =============
