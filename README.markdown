@@ -10,18 +10,20 @@ Purpose:
 
 What language can I use?
 ========================
-	Those who are supported by google bot service - see the list at http://www.google.com/support/talk/bin/answer.py?hl=en&answer=89921
+	Those which are supported by google bot service - see the list at http://www.google.com/support/talk/bin/answer.py?hl=en&answer=89921
 
 Usage:
 ===== 
-	>>>from croGtrans import *
-	>>>from getpass import getpass
-	>>>trans = Translate(login=raw_input("Your jid: "), password=getpass(), languageFrom="cs", languageTo="en")
-	>>>print trans.translate("Hovno kleslo")
-	Shit fell
-	>>>trans.setLanguage("es", "en")
-	>>>print trans.translate("Buenos tardes")
-	Good afternoon
+'''python
+>>>from croGtrans import *
+>>>from getpass import getpass
+>>>trans = Translate(login=raw_input("Your jid: "), password=getpass(), languageFrom="cs", languageTo="en")
+>>>print trans.translate("Hovno kleslo")
+Shit fell
+>>>trans.setLanguage("es", "en")
+>>>print trans.translate("Buenos tardes")
+Good afternoon
+'''
 
 Requirements:
 =============

@@ -65,13 +65,13 @@ class Translate:
     def _waitForMessage(self):
         "Waits for exactly one message"
         while not self.messageAccepted:
-            self.client.Process(1) # wait 1s between checking
+            self.client.Process(2) # wait 1s between checking
             
         
     def _newMsg(self, conn, msg):
         "New message handler"
         
-        self.messageAccepted = 1 # Translation was accepted, don´t check anymore
+        self.messageAccepted = True # Translation was accepted, don´t check anymore
         text = msg.getBody()     # get main text of the message
         self.translation = text
         
@@ -82,7 +82,7 @@ class Translate:
     
     def translate(self, text):
         "Translate given text"
-        self.messageAccepted = 0  # we are waiting for new translation
+        self.messageAccepted = False  # we are waiting for new translation
         self._sentTrans(text)  # send  text to google
         self._waitForMessage() # waits for translation
         return self.translation # self.translation was set by _newMsg, now we have to return it
