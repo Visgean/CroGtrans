@@ -8,8 +8,37 @@
 
 
 import xmpp
+import random
+import re
 
-
+class __Translation__:
+    translated = False
+    id = random.randint(4444, 7777)
+    translatedVersion = ""
+    
+    def __init__(self, text):
+        self.original = text
+        
+    def getMessage(self):
+        "This method returns text created from translation and id which can be send to google translate"
+        return "<%s>%s<%s>" % (self.id, self.original, self.id) 
+        
+    def setTranlation(self, translation):
+        "If translation is related to original text it returns True and sets translation to object"
+        reg = re.compile(r"\<(?P<id>\d*)\>(?P<text>.*)\<(\d*)\>", re.DOTALL)
+        assert re.match(reg, "<33>hoven<33>") # tests regexp
+        
+        match = re.match(reg, translation)
+        
+        if not match:
+            return False
+                
+        if int(match.group("id")) == self.id:
+            self.translatedVersion = match.group("text")
+            self.translated = True
+            
+        return self.translated
+        
 class Translate:
     "Main class for translating, probably udes "
     def __init__(self, login, password, languageFrom="cs", languageTo="en", server = None, debug = False):
@@ -20,15 +49,14 @@ class Translate:
         
         self.setLanguage(languageFrom, languageTo)
         
-        self._login(login, password, server)
+        self.__login__(login, password, server)
         
         self.client.sendInitPresence()
-        self.client.RegisterHandler("message", self._newMsg)
+        self.client.RegisterHandler("message", self.__newMsg__)
         
-        self.messageAccepted = 0 # if we have accepted translation
         self.translation = "" # Variable to store translation - changed by _newMsg and returned by translation
 
-    def _login(self, login, password, server):
+    def __login__(self, login, password, server):
         "Login to jabber account"
         jid = xmpp.JID(login)
         domain = jid.getDomain()
@@ -53,38 +81,43 @@ class Translate:
         if not auth:
             raise xmpp.NotAuthorized
 
-    def _language2jid(self, original, new):
+    def __language2jid__(self, original, new):
         "Determines google bot from given languages: example: es2en@bot.talk.google.com"
         return "%s2%s@bot.talk.google.com" % (original, new)
         
     
-    def _sentTrans(self, text):
+    def __sentTrans__(self, text):
         "Sents text to translate to google bot"
         self.client.send( xmpp.Message(self.googleBot, body = text, typ="chat" ) )
         
-    def _waitForMessage(self):
+    def __getMessage__(self):
         "Waits for exactly one message"
         while not self.messageAccepted:
             self.client.Process(2) # wait 1s between checking
+        return self.newMessage # handler was called and  set this variable...
             
         
-    def _newMsg(self, conn, msg):
+    def __newMsg__(self, conn, msg):
         "New message handler"
-        
-        self.messageAccepted = True # Translation was accepted, don´t check anymore
-        text = msg.getBody()     # get main text of the message
-        self.translation = text
+        if msg.getFrom() == self.googleBot:
+            self.messageAccepted = True # Translation was accepted, don´t check anymore
+            self.newMessage = msg.getBody() 
         
     def setLanguage(self, languageFrom, languageTo): 
         "Public method for language settings of instance."
-        self.googleBot = self._language2jid(languageFrom, languageTo)
-    
-    
+        self.googleBot = self.__language2jid__(languageFrom, languageTo)
+       
     def translate(self, text):
         "Translate given text"
-        self.messageAccepted = False  # we are waiting for new translation
-        self._sentTrans(text)  # send  text to google
-        self._waitForMessage() # waits for translation
-        return self.translation # self.translation was set by _newMsg, now we have to return it
+        translation = __Translation__(text)
+        
+        while True:            
+            self.messageAccepted = False  # we are waiting for new translation
+            self.__sentTrans__(translation.getMessage())  # send  text to google
+            trans = self.__getMessage__() # waits for translation
+            
+            if translation.setTranlation(trans):
+                return translation.translatedVersion
+            
 
 
