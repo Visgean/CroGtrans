@@ -111,13 +111,18 @@ class Translate:
         "Translate given text"
         translation = __Translation__(text)
         
-        while True:            
+        numberOfAttepts = 0
+        while numberOfAttepts < 10:            
             self.messageAccepted = False  # we are waiting for new translation
             self.__sentTrans__(translation.getMessage())  # send  text to google
             trans = self.__getMessage__() # waits for translation
             
             if translation.setTranlation(trans):
                 return translation.translatedVersion
-            
+            else:
+                numberOfAttepts += 1
+        
+        if numberOfAttepts >= 10:
+            raise LookupError
 
 

@@ -31,3 +31,8 @@ Requirements:
 	- xmpppy|xmpp|pyxmpp - install by sudo apt-get install python-pyxmpp
 	- jabber account
 	- access to internet
+
+License
+=======
+Licensed under http://creativecommons.org/licenses/by/3.0/
+
