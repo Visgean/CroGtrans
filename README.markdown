@@ -6,12 +6,15 @@
 	                                               
 Purpose:
 ========
-	This is python library for google translation, advantage is that is baed on jabber so google will not block you for having too many requests...
+This is python library for google translation, 
+advantage is that is based on jabber so google 
+wlil not block you for having too many requests...
 
 What language can I use?
 ========================
-	Those which are supported by google bot service - see the list at http://www.google.com/support/talk/bin/answer.py?hl=en&answer=89921
-
+Those which are supported by google bot service
+see the list at [google list of translation bots](http://goo.gl/UYPNB)
+	
 Usage:
 ===== 
 ```python
@@ -28,9 +31,10 @@ Good afternoon
 
 Requirements:
 =============
-	- xmpppy|xmpp|pyxmpp - install by sudo apt-get install python-pyxmpp
-	- jabber account
-	- access to internet
+
+- xmpppy|xmpp|pyxmpp - install by sudo apt-get install python-pyxmpp
+- jabber account
+- access to internet :)
 
 License
 =======
