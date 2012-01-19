@@ -32,7 +32,7 @@ Good afternoon
 Requirements:
 =============
 
-- xmpppy|xmpp|pyxmpp - install by sudo apt-get install python-pyxmpp
+- xmpppy|xmpp|pyxmpp - install by sudo apt-get install python-xmpp
 - jabber account
 - access to internet :)
 
