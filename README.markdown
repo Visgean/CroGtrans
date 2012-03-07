@@ -18,7 +18,7 @@ see the list at [google list of translation bots](http://goo.gl/UYPNB)
 Usage:
 ===== 
 ```python
->>>from croGtrans import *
+>>>from croGtrans import Translate
 >>>from getpass import getpass
 >>>trans = Translate(login=raw_input("Your jid: "), password=getpass(), languageFrom="cs", languageTo="en")
 >>>print trans.translate("Hovno kleslo")
@@ -32,9 +32,8 @@ Good afternoon
 Requirements:
 =============
 
-- xmpppy|xmpp|pyxmpp - install by sudo apt-get install python-xmpp
+- xmpp - install by sudo apt-get install python-xmpp
 - jabber account
-- access to internet :)
 
 License
 =======
